@@ -1,0 +1,13 @@
+version: '3'
+services:
+  mlflow:
+    image: 'narumi/mlflow'
+    ports:
+      - "5000:5000"
+    volumes:
+      - "mlruns:/workspace/mlruns"
+    restart: always
+
+volumes:
+  mlruns:
+    external: true
