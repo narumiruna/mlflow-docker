@@ -5,7 +5,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - "mlruns:/workspace/mlruns"
+      - "mlruns:/mlruns"
     restart: always
 
 volumes:
