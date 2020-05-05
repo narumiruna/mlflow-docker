@@ -10,4 +10,4 @@ services:
 
 volumes:
   mlruns:
-    external: true
+    driver: local
