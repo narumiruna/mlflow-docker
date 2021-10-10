@@ -1,13 +1,12 @@
 version: '3'
 services:
   mlflow:
-    image: 'narumi/mlflow'
+    image: 'mlflow'
     ports:
-      - "5000:5000"
-    volumes:
-      - "mlruns:/mlruns"
+      - '5000:5000'
     restart: always
-
-volumes:
-  mlruns:
-    driver: local
+    environment:
+      - DEFAULT_ARTIFACT_ROOT=
+      - BACKEND_STORE_URI=
+      - AWS_ACCESS_KEY_ID=
+      - AWS_SECRET_ACCESS_KEY=
