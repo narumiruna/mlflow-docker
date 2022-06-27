@@ -6,7 +6,7 @@ services:
       - '5000:5000'
     restart: always
     environment:
-      - DEFAULT_ARTIFACT_ROOT=
+      - ARTIFACTS_DESTINATION=
       - BACKEND_STORE_URI=
       - AWS_ACCESS_KEY_ID=
       - AWS_SECRET_ACCESS_KEY=

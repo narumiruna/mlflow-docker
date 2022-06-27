@@ -1,18 +1,26 @@
-FROM python:3
+FROM python:3.10-buster
 
-RUN pip3 install -U pip \
-    && pip3 install \
-    boto3 \
-    mlflow \
-    pymysql \
-    && rm -rf ~/.cache/pip
+RUN apt-get update && apt-get install -y \
+    python3-pandas \
+    python3-scipy \
+    python3-sklearn \
+    && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /mlflow
+WORKDIR /workspace
+
+COPY pyproject.toml .
+COPY poetry.lock .
+
+RUN pip install -U pip \
+    && pip install poetry \
+    && poetry config virtualenvs.create false \
+    && poetry install 
 
 CMD mlflow server \
     --host 0.0.0.0 \
     --port 5000 \
-    --default-artifact-root ${DEFAULT_ARTIFACT_ROOT} \
-    --backend-store-uri ${BACKEND_STORE_URI}
+    --backend-store-uri ${BACKEND_STORE_URI} \
+    --serve-artifacts \
+    --artifacts-destination ${ARTIFACTS_DESTINATION}
 
 EXPOSE 5000
