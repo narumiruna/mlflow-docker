@@ -19,8 +19,8 @@ RUN pip install -U pip \
 CMD mlflow server \
     --host 0.0.0.0 \
     --port 5000 \
-    --backend-store-uri ${BACKEND_STORE_URI} \
+    --backend-store-uri ${BACKEND_STORE_URI:-./mlruns} \
     --serve-artifacts \
-    --artifacts-destination ${ARTIFACTS_DESTINATION}
+    --artifacts-destination ${ARTIFACTS_DESTINATION:-./mlartifacts}
 
 EXPOSE 5000
