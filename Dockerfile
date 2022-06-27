@@ -1,20 +1,13 @@
-FROM python:3.10-buster
+FROM python:3.10.5-bullseye
 
-RUN apt-get update && apt-get install -y \
-    python3-pandas \
-    python3-scipy \
-    python3-sklearn \
-    && rm -rf /var/lib/apt/lists/*
+RUN pip3 install -U pip \
+    && pip3 install \
+    boto3==1.24.17 \
+    mlflow==1.26.1 \
+    pymysql==1.0.2 \
+    && rm -rf ~/.cache/pip
 
-WORKDIR /workspace
-
-COPY pyproject.toml .
-COPY poetry.lock .
-
-RUN pip install -U pip \
-    && pip install poetry \
-    && poetry config virtualenvs.create false \
-    && poetry install 
+WORKDIR /mlflow
 
 ENV BACKEND_STORE_URI=./mlruns
 ENV ARTIFACTS_DESTINATION=./mlartifacts
