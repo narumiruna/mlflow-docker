@@ -4,6 +4,7 @@ RUN pip3 install -U pip \
     && pip3 install \
     boto3==1.24.17 \
     mlflow==1.26.1 \
+    mysqlclient==2.1.1 \
     pymysql==1.0.2 \
     && rm -rf ~/.cache/pip
 
