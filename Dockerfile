@@ -16,11 +16,14 @@ RUN pip install -U pip \
     && poetry config virtualenvs.create false \
     && poetry install 
 
+ENV BACKEND_STORE_URI=./mlruns
+ENV ARTIFACTS_DESTINATION=./mlartifacts
+
 CMD mlflow server \
     --host 0.0.0.0 \
     --port 5000 \
-    --backend-store-uri ${BACKEND_STORE_URI:-./mlruns} \
+    --backend-store-uri ${BACKEND_STORE_URI} \
     --serve-artifacts \
-    --artifacts-destination ${ARTIFACTS_DESTINATION:-./mlartifacts}
+    --artifacts-destination ${ARTIFACTS_DESTINATION}
 
 EXPOSE 5000
