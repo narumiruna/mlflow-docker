@@ -10,6 +10,9 @@ RUN pip3 install -U pip \
 
 WORKDIR /mlflow
 
+ENV AWS_ACCESS_KEY_ID=
+ENV AWS_SECRET_ACCESS_KEY=
+
 # mysql://user:pass@host:port/mlflow
 # mysql://user:pass@host.docker.internal:port/mlflow
 ENV BACKEND_STORE_URI=./mlruns
