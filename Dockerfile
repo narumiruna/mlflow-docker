@@ -10,7 +10,11 @@ RUN pip3 install -U pip \
 
 WORKDIR /mlflow
 
+# mysql://user:pass@host:port/mlflow
+# mysql://user:pass@host.docker.internal:port/mlflow
 ENV BACKEND_STORE_URI=./mlruns
+
+# s3://<bucket>/mlartifacts, if you want use s3 bucket
 ENV ARTIFACTS_DESTINATION=./mlartifacts
 
 CMD mlflow server \
